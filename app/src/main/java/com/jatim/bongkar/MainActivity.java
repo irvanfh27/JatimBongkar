@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnHistory.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         });

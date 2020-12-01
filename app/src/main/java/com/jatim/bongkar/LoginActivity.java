@@ -27,6 +27,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import util.ServerAPI;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button _loginButton;
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
-    private static String URL_LOGIN = "http://210.210.175.1:8023/api/login/";
+    private static String URL_LOGIN = ServerAPI.URL_API + "api/login/";
     SessionManager sessionManager;
 
 
@@ -110,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
 
                             //loading.setVisibility(View.GONE);
-                        }else{
+                        } else {
                             Toast.makeText(LoginActivity.this, "Username Or Password Is Wrong", Toast.LENGTH_SHORT).show();
                         }
 

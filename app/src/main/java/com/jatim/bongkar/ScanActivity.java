@@ -47,11 +47,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import util.ServerAPI;
+
 public class ScanActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button buttonScan, buttonPhoto, buttonSubmit;
     private TextView platNOTextView, driverTextView, sendWeightTextView;
-    private static String URL = "http://210.210.175.1:8023/api/v1/security/";
+    private static String URL = ServerAPI.URL_API + "api/v1/security/";
     public static ImageView imageView, mPhoto;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     String imgBase64, userId, scanId;
@@ -235,7 +237,6 @@ public class ScanActivity extends AppCompatActivity implements View.OnClickListe
                         Log.d("TEST", response);
                         buttonSubmit.setVisibility(View.VISIBLE);
                         if (success) {
-
                             //loading.setVisibility(View.GONE);
                             Toast.makeText(ScanActivity.this, "Success", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(ScanActivity.this, MainActivity.class);
