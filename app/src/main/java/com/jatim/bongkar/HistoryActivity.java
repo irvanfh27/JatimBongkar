@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -48,18 +49,21 @@ public class HistoryActivity extends AppCompatActivity {
 
         mManager = new LinearLayoutManager(HistoryActivity.this, LinearLayoutManager.VERTICAL, false);
         rHistory.setLayoutManager(mManager);
-        loadHistoryData(sessionManager.ID_USER);
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        loadHistoryData(user.get(sessionManager.ID_USER));
         mAdapter = new AdapterLoading(HistoryActivity.this, mItems);
         rHistory.setAdapter(mAdapter);
+
     }
 
     private void loadHistoryData(final String userId) {
-        StringRequest reqData = new StringRequest(Request.Method.GET, URL_API + sessionManager.ID_USER,
-                (Response.Listener<String>) response -> {
+        Log.d("ID", userId);
+        StringRequest reqData = new StringRequest(Request.Method.GET, URL_API + userId,
+                response -> {
                     Log.d("Volley", "response :" + response.toString());
                     try {
                         JSONObject data = new JSONObject(response);
-                        JSONArray array = data.getJSONArray("getst");
+                        JSONArray array = data.getJSONArray("data");
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject nllist = array.getJSONObject(i);
                             HistoryData md = new HistoryData();
@@ -90,5 +94,14 @@ public class HistoryActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(reqData);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mback:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
