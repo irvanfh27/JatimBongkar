@@ -67,6 +67,7 @@ public class HistoryActivity extends AppCompatActivity {
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject nllist = array.getJSONObject(i);
                             HistoryData md = new HistoryData();
+                            md.setNoDelivery(nllist.getString("no_delivery"));
                             md.setDriver(nllist.getString("driver"));
                             md.setNoPolisi(nllist.getString("no_polisi"));
                             md.setSendWeight(nllist.getString("send_weight"));
@@ -81,14 +82,11 @@ public class HistoryActivity extends AppCompatActivity {
                     mAdapter.notifyDataSetChanged();
 
                 },
-                (Response.ErrorListener) error -> Log.d("Volley", "response :" + error.toString())) {
+                error -> Log.d("Volley", "response :" + error.toString())) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-//                params.put("stockpile", Stockpile);
-                //params.put("password",password);
                 return params;
-
             }
         };
 
