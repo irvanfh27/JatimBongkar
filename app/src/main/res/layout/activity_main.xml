@@ -38,7 +38,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Loading"
+                android:text="Unloading"
                 android:textAlignment="center" />
 
         </RelativeLayout>
